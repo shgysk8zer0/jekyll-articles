@@ -4,6 +4,6 @@
 			<span>Recent Posts</span>
 		</h4>
 		{% for post in site.posts limit: include.count %}
-			{% include post-preview.html post=post %}
+			{% include articles/post-preview.html post=post %}
 		{% endfor %}
 </div>

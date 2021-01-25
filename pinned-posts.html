@@ -5,6 +5,6 @@
 	</h4>
 	{% assign posts = site.posts | where: 'pinned', true %}
 	{% for post in posts limit: include.count %}
-		{% include post-preview.html post=post %}
+		{% include articles/post-preview.html post=post %}
 	{% endfor %}
 </div>
