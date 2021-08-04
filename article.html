@@ -97,7 +97,9 @@
 	%}{% endif %}
 	<div itemprop="articleBody mainEntityOfPage" class="optimize-legibility"{% if include.columns %} data-columns="{{ include.columns }}"{% endif %}>{{ content }}</div>
 	<footer class="clearfix relative">
-		{% if jekyll.environment == 'production' and  page.comments and site.discus-identifier %}{% include articles/disqus.html %}{% endif %}
+		{% if site.disqus %}
+			<disqus-comments id="comments" class="block" site="{{ site.disqus }}" itemprop="comments" itemtype="https://schema.org/WEbPageElement" itemscope=""></disqus-comments>
+		{% endif %}
 		<hr />
 		{% include common/license.html %}
 	</footer>
