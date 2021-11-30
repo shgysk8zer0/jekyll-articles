@@ -26,6 +26,8 @@
 				<img itemprop="image" src="{{ include.author.image }}" class="round {{ include.animation | default: 'jackInTheBox' }} animation-speed-normal animation-ease-out" loading="lazy" decoding="async" crossorigin="anonymous" referrerpolicy="no-referrer" alt="Gravatar" />
 			{% endif %}
 		</summary>
-		{% if include.author.sameAs %}{% include common/same-as-links.html sameAs=include.author.sameAs containerClass="flex row wrap author-social" %}{% endif %}
+		{% if include.author.sameAs %}
+			{% include common/same-as-links.html sameAs=include.author.sameAs url=include.author.url email=include.author.email telephone=include.author.telephone containerClass="flex row wrap space-evenly author-social" %}
+		{% endif %}
 	</details>
 </div>
