@@ -26,7 +26,7 @@
 					<span>&mdash;</span>
 					<span itemprop="worksFor" itemtype="https://schema.org/{{ include.author.worksFor['@type'] | default: 'Organization' }}" itemscope="">
 						{% if include.author.worksFor.url %}
-							<a href="{{ include.author.worksFor.url }}" rel="noreferrer noopener external" itemprop="url">
+							<a href="{{ include.author.worksFor.url }}" rel="noreferrer noopener external" class="current-color" itemprop="url">
 								<span itemprop="name">{{ include.author.worksFor.name }}</span>
 								{% include common/icon.html icon="link-external" height="16" width="16" fill="currentColor" %}
 							</a>
