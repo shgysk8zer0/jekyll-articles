@@ -2,29 +2,27 @@
 	{% capture icon-class %}{{ include.animation | default: 'fadeIn' }} animation-ease-in-out animation-speed-normal icon {% endcapture %}
 	<details>
 		<summary>
-			<b>By</b>
-			{% if include.author.url %}
-				<a href="{{ include.author.url }}" rel="noopener noreferrer external" class="author-url">
-			{% endif %}
-			<span itemprop="name">
-				{% if include.author.givenName %}
-					<span itemprop="givenName">{{ include.author.givenName }}</span>
-					<span itemprop="familyName">{{ include.author.familyName }}</span>
-				{% else %}<span itemprop="name">{{ include.author.name }}</span>{% endif %}
-			</span>
-			{% if inclulde.author.url %}</a>{% endif %}
-			{% if include.author.gravatar %}
-				<a href="https://secure.gravatar.com/{{ include.author.image.gravatar }}" title="Gravatar" rel="noopener noreferrer external">
-					{% include common/gravatar.html
-						gravatar=include.author.gravatar
-						class='fadeIn round animation-speed-normal animation-ease-out'
-						sizes='1.8rem'
-						itemprop='image'
-					%}
-				</a>
-			{% elsif include.author.image %}
-				<img itemprop="image" src="{{ include.author.image }}" class="round {{ include.animation | default: 'jackInTheBox' }} animation-speed-normal animation-ease-out" loading="lazy" decoding="async" crossorigin="anonymous" referrerpolicy="no-referrer" alt="Gravatar" />
-			{% endif %}
+			<div class="flex row author-by-line">
+				<b>By</b>
+				<span itemprop="name">
+					{% if include.author.givenName and include.author['@type'] == "Person" %}
+						<span itemprop="givenName">{{ include.author.givenName }}</span>
+						<span itemprop="familyName">{{ include.author.familyName }}</span>
+					{% else %}<span itemprop="name">{{ include.author.name }}</span>{% endif %}
+				</span>
+				{% if include.author.gravatar %}
+					<a href="https://secure.gravatar.com/{{ include.author.image.gravatar }}" title="Gravatar" rel="noopener noreferrer external">
+						{% include common/gravatar.html
+							gravatar=include.author.gravatar
+							class='fadeIn round animation-speed-normal animation-ease-out'
+							sizes='1.8rem'
+							itemprop='image'
+						%}
+					</a>
+				{% elsif include.author.image %}
+					<img itemprop="image" src="{{ include.author.image }}" class="round {{ include.animation | default: 'jackInTheBox' }} animation-speed-normal animation-ease-out" loading="lazy" decoding="async" crossorigin="anonymous" referrerpolicy="no-referrer" alt="Gravatar" />
+				{% endif %}
+			</div>
 		</summary>
 		{% if include.author.sameAs %}
 			{% include common/same-as-links.html sameAs=include.author.sameAs url=include.author.url email=include.author.email telephone=include.author.telephone containerClass="flex row wrap space-evenly author-social" %}
