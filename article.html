@@ -18,7 +18,7 @@
 		{% if page.thumbnail %}
 			<meta itemprop="image" content="{{ page.thumbnail }}" />
 		{% elsif page.imgur %}
-			{% capture hash %}{{ page.imgur | replace: 'https://i.imgur.com/', '' | replace: 'https://imgur.com/', '' | replace: '.png', '' | replace: '.jpg', '' }}{% endcapture %}
+			{% capture hash %}{{ page.imgur | remove: 'https://i.imgur.com/' | remove: 'https://imgur.com/' | remove: '.png' | remove: '.jpg' }}{% endcapture %}
 			<meta itemprop="image" content="https://i.imgur.com/{{ hash }}l.png" />
 		{% elsif page.image %}
 			<meta itemprop="image" content="{{ page.image | absolute_url }}" />
@@ -33,9 +33,9 @@
 		<meta itemprop="url" content="{{ page.url | absolute_url }}" />
 		<details open="">
 			<summary class="block">
-				<h1 class="inline-block">
-					{% include common/icon.html icon='view-more' %}
-					<span itemprop="headline">{{ page.title }}</span>
+				<h1 class="flex">
+					{% include common/icon.html icon="view-more" fill="currentColor" height="20" width="20" %}
+					<span itemprop="headline" class="font-title grow-1">{{ page.title }}</span>
 				</h1>
 			</summary>
 			<div class="font-main post-details">
@@ -55,7 +55,7 @@
 					<b class="meta-date-posted">
 						<span>Posted on</span>
 						<time itemprop="datePublished" datetime="{{ page.date | date: date_to_xmlschema }}">
-							{{ page.date | date: '%a, %B %e, %Y' }}
+							{{ page.date | date: '%a, %b. %e, %Y' }}
 						</time>
 					</b>
 				{% endif %}
@@ -63,7 +63,7 @@
 					<b class="meta-date-updated">
 						<span>Updated on</span>
 						<time itemprop="dateModified" datetime="{{ page.updated | date: date_to_xmlschema }}">
-							{{ page.updated | date: '%a, %B %e, %Y' }}
+							{{ page.updated | date: '%a, %b. %e, %Y' }}
 						</time>
 					</b>
 				{% else %}

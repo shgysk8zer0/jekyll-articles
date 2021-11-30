@@ -2,7 +2,7 @@
 	{% capture icon-class %}{{ include.animation | default: 'fadeIn' }} animation-ease-in-out animation-speed-normal icon {% endcapture %}
 	<details>
 		<summary>
-			<div class="inline-flex row author-by-line">
+			<div class="inline-flex row wrap author-by-line">
 				<b>By</b>
 				{% if include.author.gravatar %}
 					<a href="https://secure.gravatar.com/{{ include.author.image.gravatar }}" title="Gravatar" rel="noopener noreferrer external">
@@ -18,22 +18,22 @@
 				{% endif %}
 				<span itemprop="name">
 					{% if include.author.givenName and include.author['@type'] == "Person" %}
-						<span itemprop="givenName">{{ include.author.givenName }}</span>
-						<span itemprop="familyName">{{ include.author.familyName }}</span>
+					<span itemprop="givenName">{{ include.author.givenName }}</span>
+					<span itemprop="familyName">{{ include.author.familyName }}</span>
 					{% else %}<span itemprop="name">{{ include.author.name }}</span>{% endif %}
 				</span>
 				{% if include.author.worksFor %}
+				<span itemprop="worksFor" class="author-works-for" itemtype="https://schema.org/{{ include.author.worksFor['@type'] | default: 'Organization' }}" itemscope="">
 					<span>&mdash;</span>
-					<span itemprop="worksFor" itemtype="https://schema.org/{{ include.author.worksFor['@type'] | default: 'Organization' }}" itemscope="">
-						{% if include.author.worksFor.url %}
-							<a href="{{ include.author.worksFor.url }}" rel="noreferrer noopener external" class="color-inherit" itemprop="url">
-								<span itemprop="name">{{ include.author.worksFor.name }}</span>
-								{% include common/icon.html icon="link-external" height="16" width="16" fill="currentColor" %}
-							</a>
-						{% else %}
-							<span itemprop="name">{{ include.author.worksFor.name }}</span>
-						{% endif %}
-					</span>
+					{% if include.author.worksFor.url %}
+					<a href="{{ include.author.worksFor.url }}" rel="noreferrer noopener external" class="color-inherit" itemprop="url">
+						<span itemprop="name">{{ include.author.worksFor.name }}</span>
+						{% include common/icon.html icon="link-external" height="16" width="16" fill="currentColor" %}
+					</a>
+					{% else %}
+					<span itemprop="name">{{ include.author.worksFor.name }}</span>
+					{% endif %}
+				</span>
 				{% endif %}
 			</div>
 		</summary>
