@@ -2,7 +2,7 @@
 	{% capture icon-class %}{{ include.animation | default: 'fadeIn' }} animation-ease-in-out animation-speed-normal icon {% endcapture %}
 	<details>
 		<summary>
-			<div class="flex row author-by-line">
+			<div class="inline-flex row author-by-line">
 				<b>By</b>
 				<span itemprop="name">
 					{% if include.author.givenName and include.author['@type'] == "Person" %}
