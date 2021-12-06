@@ -49,7 +49,8 @@
 					<hr />
 				{% endif %}
 				{% if site.data.authors contains include.author %}
-					{% include articles/by-line.html author=site.data.authors[include.author] %}
+					{% assign tmp_author=site.data.authors[include.author] %}
+					{% include articles/by-line.html author=tmp_author %}
 				{% elsif include.author %}
 					{% include articles/by-line.html author=include.author %}
 				{% endif %}
