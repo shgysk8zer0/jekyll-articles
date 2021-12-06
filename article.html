@@ -48,7 +48,9 @@
 					</div>
 					<hr />
 				{% endif %}
-				{% if include.author %}
+				{% if site.data.authors contains include.author %}
+					{% include articles/by-line.html author=site.data.authors[include.author] %}
+				{% elsif include.author %}
 					{% include articles/by-line.html author=include.author %}
 				{% endif %}
 				{% if page.date %}
