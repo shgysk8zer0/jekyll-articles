@@ -15,7 +15,11 @@
 	{% endif %}
 	<header class="article-meta background-accent color-alt">
 		{% if page.tags %}<meta itemprop="keywords" content="{{ page.tags | join: ', '}}" />{% endif %}
-		{% if page.thumbnail %}
+		{% if page.thumbnail.url %}
+			<meta itemprop="image" content="{{ page.thumbnail.url }}" />
+			<meta itemprop="width" content="{{ page.thumbnail.width }}" />
+			<meta itemprop="height" content="{{ page.thumbnail.height }}" />
+		{% elsif page.thumbnail %}
 			<meta itemprop="image" content="{{ page.thumbnail }}" />
 		{% elsif page.imgur %}
 			{% capture hash %}{{ page.imgur | remove: 'https://i.imgur.com/' | remove: 'https://imgur.com/' | remove: '.png' | remove: '.jpg' }}{% endcapture %}
